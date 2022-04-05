@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+<style type="text/css">
+	.st0{stroke:#000000;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st1{display:none;}
+	.st2{display:inline;stroke:#000000;stroke-miterlimit:10;}
+	.st3{display:inline;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+</style>
+<g id="Calque_1">
+	<line class="st0" x1="54.5" y1="89" x2="54.5" y2="50"/>
+	<polyline class="st0" points="54.5,30.5 15.5,30.5 54.5,11 54.5,50 	"/>
+	<polyline class="st0" points="54.5,30.5 15.5,30.5 54.5,50 54.5,11 	"/>
+</g>
+<g id="Calque_2" class="st1">
+	<circle class="st2" cx="50.34" cy="50.03" r="25"/>
+	<line class="st3" x1="90.34" y1="50.03" x2="10.34" y2="50.03"/>
+	<line class="st3" x1="78.63" y1="21.74" x2="22.06" y2="78.31"/>
+	<line class="st3" x1="50.34" y1="10.03" x2="50.34" y2="90.03"/>
+	<line class="st3" x1="22.06" y1="21.74" x2="78.63" y2="78.31"/>
+</g>
+</svg>
