@@ -11,7 +11,7 @@ for (let y = 0; y <= height; y++) {
     let row = [];
     for (let x = 0; x <= width; x++) {
         row.push(
-            `<button type='button' ${sweep_action}='sweep(${x}, ${y})' ${flag_action}='flag(${x}, ${y})'></button>`
+            `<button type='button' class='btn btn-primary tile' ${sweep_action}='sweep(${x}, ${y})' ${flag_action}='flag(${x}, ${y})'>&nbsp</button>`
         );
     };
     row.push('<br>');
