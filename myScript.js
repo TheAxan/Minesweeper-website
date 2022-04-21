@@ -3,11 +3,15 @@ let height = 10, width =10;
 
 let output = [];
 
+let sweep_action = 'onclick';
+
+let flag_action = 'oncontextmenu';
+
 for (let y = 0; y <= height; y++) {
     let row = [];
     for (let x = 0; x <= width; x++) {
         row.push(
-            `<button type='button' onclick='sweep(${x}, ${y})' oncontextmenu='flag(${x}, ${y})'></button>`
+            `<button type='button' ${sweep_action}='sweep(${x}, ${y})' ${flag_action}='flag(${x}, ${y})'></button>`
         );
     };
     row.push('<br>');
