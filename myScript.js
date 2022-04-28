@@ -4,13 +4,23 @@ function generateMinefieldTable(height = 10, width = 10, sweep_action = 'onclick
         let row = [];
         for (let x = 0; x <= width; x++) {
             row.push(
-                `<td><button type='button' class='btn btn-primary tile' ${sweep_action}='sweep(${x}, ${y})' ${flag_action}='flag(${x}, ${y})'></button></td>`
+                `<td id='cell-${x}-${y}'>
+					<button id='button-${x}-${y}' type='button' class='btn btn-primary tile' ${sweep_action}='sweep(${x}, ${y})' ${flag_action}='flag(${x}, ${y})'></button>
+				</td>`
             );  
         };
         output.push(`<tr>${row.join('')}</tr>`);
     };
     output = output.join('');
     document.getElementById('minefield').innerHTML = output;
+};
+
+function sweep(x, y) {
+    document.getElementById(`cell-${x}-${y}`).innerHTML = ''
+};
+
+function flag(x, y) {
+    document.getElementById(`button-${x}-${y}`).insertAdjacentHTML('afterbegin', '<img src="flag.svg" height="17" class="d-inline-block"></img>')
 };
 
 function getRandomInt(min, max) {
