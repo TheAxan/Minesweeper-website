@@ -16,11 +16,13 @@ function generateMinefieldTable(height = 10, width = 10, sweep_action = 'onclick
 };
 
 function sweep(x, y) {
-    document.getElementById(`cell-${x}-${y}`).innerHTML = ''
+    let cell = document.getElementById(`cell-${x}-${y}`);
+    cell.innerHTML = '';
 };
 
 function flag(x, y) {
-    document.getElementById(`button-${x}-${y}`).insertAdjacentHTML('afterbegin', '<img src="flag.svg" height="17" class="d-inline-block"></img>')
+    let button = document.getElementById(`button-${x}-${y}`);
+    button.innerHTML = '<img src="flag.svg" height="17" class="d-inline-block"></img>';
 };
 
 function getRandomInt(min, max) {
