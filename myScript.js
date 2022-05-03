@@ -17,7 +17,12 @@ function generateMinefieldTable(height = 10, width = 10, sweep_action = 'onclick
 
 function sweep(x, y) {
     let cell = document.getElementById(`cell-${x}-${y}`);
-    cell.innerHTML = '';
+    let cellValue = minefield[y][x];
+    if (cellValue === 0) {
+        cell.innerHTML = '';
+    } else {
+        cell.innerHTML = minefield[y][x];
+    };
 };
 
 function flag(x, y) {
@@ -31,8 +36,9 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 };
 
+var minefield = null;
 function generateMinefieldArray(height = 10, width = 10) {
-    let minefield = new Array(height)
+    minefield = new Array(height)
         .fill(null)
         .map(
             () => Array(width).fill(0)
