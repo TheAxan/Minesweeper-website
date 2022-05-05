@@ -15,42 +15,6 @@ function generateMinefieldTable(height = 10, width = 10, sweep_action = 'onclick
     document.getElementById('minefield').innerHTML = output;
 };
 
-var gameOver = false;
-function sweep(x, y) {
-    if (gameOver) {
-        return;
-    } else {
-        let cell = document.getElementById(`cell-${x}-${y}`);
-        if (document.getElementById(`button-${x}-${y}`) == null) {
-            return;
-        } else if (document.getElementById(`button-${x}-${y}`).innerHTML == ''){
-            let cellValue = minefield[y][x];
-            if (cellValue === 0) {
-                cell.innerHTML = '';
-            } else if (cellValue === 9) {
-                cell.innerHTML = '<img src="mine.svg" height="25" class="d-inline-block"></img>';
-                gameOver = true;
-            } else {
-                cell.innerHTML = minefield[y][x];
-            };
-        } else {
-            document.getElementById(`button-${x}-${y}`).innerHTML = '';
-        };
-    };
-};
-
-function flag(x, y) {
-    if (gameOver) {
-        return;
-    } else {
-        let button = document.getElementById(`button-${x}-${y}`);
-        if (button.innerHTML == '') {
-            button.innerHTML = '<img src="flag.svg" height="17" class="d-inline-block"></img>';
-        } else {
-            button.innerHTML = '';
-        };
-    };
-};
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -73,16 +37,52 @@ function generateMinefieldArray(height = 10, width = 10) {
         let y = getRandomInt(0, height);
         if (minefield[y][x] < 9) {
             minefield[y][x] = 9;
-            for (let [j, i] of [[-1, -1], [-1, 0], [-1, 1], 
-                                [0, -1], [0, 1], 
-                                [1, -1], [1, 0], [1, 1]]) {
-                if (-1 < y+j && y+j < height && -1 < x+i && x+i < width) {
-                    if (minefield[y+j][x+i] < 9) {
-                        minefield[y+j][x+i] += 1;
-                    };
+            for (let [j, i] of [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]) {
+                if (-1 < y+j && y+j < height 
+                        && -1 < x+i && x+i < width 
+                        && minefield[y+j][x+i] < 9) {
+                    minefield[y+j][x+i]++;
                 };
             };
             placed++;
+        };
+    };
+};
+
+var gameOver = false;
+
+function sweep(x, y) {
+    if (gameOver) {
+        return;
+    } else {
+        let cell = document.getElementById(`cell-${x}-${y}`);
+        if (document.getElementById(`button-${x}-${y}`) == null) {
+            return;
+        } else if (document.getElementById(`button-${x}-${y}`).innerHTML == ''){
+            let cellValue = minefield[y][x];
+            if (cellValue === 0) {
+                cell.innerHTML = '';
+            } else if (cellValue === 9) {
+                cell.innerHTML = '<img src="mine.svg" height="25" class="d-inline-block"></img>';
+                gameOver = true;
+            } else {
+                cell.innerHTML = cellValue;
+            };
+        } else {
+            document.getElementById(`button-${x}-${y}`).innerHTML = '';
+        };
+    };
+};
+
+function flag(x, y) {
+    if (gameOver) {
+        return;
+    } else {
+        let button = document.getElementById(`button-${x}-${y}`);
+        if (button.innerHTML == '') {
+            button.innerHTML = '<img src="flag.svg" height="17" class="d-inline-block"></img>';
+        } else {
+            button.innerHTML = '';
         };
     };
 };
