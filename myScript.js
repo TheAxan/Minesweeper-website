@@ -17,10 +17,14 @@ function generateMinefieldTable(height = 10, width = 10, sweep_action = 'onclick
 
 function sweep(x, y) {
     let cell = document.getElementById(`cell-${x}-${y}`);
-    if (document.getElementById(`button-${x}-${y}`).innerHTML == ''){
+    if (document.getElementById(`button-${x}-${y}`) == null) {
+        return;
+    } else if (document.getElementById(`button-${x}-${y}`).innerHTML == ''){
         let cellValue = minefield[y][x];
         if (cellValue === 0) {
             cell.innerHTML = '';
+        } else if (cellValue === 9) {
+            cell.innerHTML = '<img src="mine.svg" height="25" class="d-inline-block"></img>'
         } else {
             cell.innerHTML = minefield[y][x];
         };
