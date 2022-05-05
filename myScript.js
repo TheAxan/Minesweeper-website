@@ -17,17 +17,25 @@ function generateMinefieldTable(height = 10, width = 10, sweep_action = 'onclick
 
 function sweep(x, y) {
     let cell = document.getElementById(`cell-${x}-${y}`);
-    let cellValue = minefield[y][x];
-    if (cellValue === 0) {
-        cell.innerHTML = '';
+    if (document.getElementById(`button-${x}-${y}`).innerHTML == ''){
+        let cellValue = minefield[y][x];
+        if (cellValue === 0) {
+            cell.innerHTML = '';
+        } else {
+            cell.innerHTML = minefield[y][x];
+        };
     } else {
-        cell.innerHTML = minefield[y][x];
+        document.getElementById(`button-${x}-${y}`).innerHTML = '';
     };
 };
 
 function flag(x, y) {
     let button = document.getElementById(`button-${x}-${y}`);
-    button.innerHTML = '<img src="flag.svg" height="17" class="d-inline-block"></img>';
+    if (button.innerHTML == '') {
+        button.innerHTML = '<img src="flag.svg" height="17" class="d-inline-block"></img>';
+    } else {
+        button.innerHTML = '';
+    };
 };
 
 function getRandomInt(min, max) {
