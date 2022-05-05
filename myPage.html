@@ -31,8 +31,7 @@
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
       
       <header class="mb-auto">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-          <img src="mine.svg" width="100">
+        <a id='mineHeader' href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <span class="fs-3adk">Minesweeter</span>
         </a>
       </header>
@@ -42,9 +41,7 @@
       </main>
       
       <footer class="mt-auto">
-        <a data-bs-toggle="modal" href="#settingsModal">
-          <img src="gear.svg" width="60">
-        </a>
+        <a id='gear' data-bs-toggle="modal" href="#settingsModal"></a>
       </footer>
 
       <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
@@ -72,6 +69,8 @@
 	  <script>
       generateMinefieldTable();
       generateMinefieldArray();
+	    generateGear();
+	    generateMine();
     </script>
   </body>
 </html>

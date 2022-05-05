@@ -63,7 +63,7 @@ function sweep(x, y) {
             if (cellValue === 0) {
                 cell.innerHTML = '';
             } else if (cellValue === 9) {
-                cell.innerHTML = '<img src="mine.svg" height="25" class="d-inline-block"></img>';
+                cell.innerHTML = mineSVG();
                 gameOver = true;
             } else {
                 cell.innerHTML = cellValue;
@@ -80,9 +80,57 @@ function flag(x, y) {
     } else {
         let button = document.getElementById(`button-${x}-${y}`);
         if (button.innerHTML == '') {
-            button.innerHTML = '<img src="flag.svg" height="17" class="d-inline-block"></img>';
+            button.innerHTML = flagSVG();
         } else {
             button.innerHTML = '';
         };
     };
+};
+
+function flagSVG(color = '#000000'){
+	return `<svg viewBox="0 0 52 91" height="17" class="d-inline-block">
+		<defs>
+			<style>.b{stroke:${color};stroke-linecap:round;stroke-linejoin:round;stroke-width:12px;}</style>
+		</defs>
+		<line class="b" x1="46" y1="85" x2="46" y2="46"/>
+		<polygon class="b" points="6 26 46 46 46 6 6 26"/>
+	</svg>`;
+};
+
+function gearSVG(color = '#000000'){
+	return `<svg viewBox="0 0 80.97 80.97" width="60">
+		<defs>
+			<style>.b{fill:${color};stroke:${color};stroke-linejoin:round;stroke-width:4px;}</style>
+		</defs>
+		<path class="b" d="M40.49,30.49c.06,0,.13,0,.19,0L28.87,2l-7.39,3.06,11.8,28.5c1.82-1.89,4.37-3.07,7.2-3.07Z"/>
+		<path class="b" d="M47.69,47.42c-1.82,1.89-4.37,3.07-7.2,3.07-.06,0-.13,0-.19,0l11.8,28.5,7.39-3.06-11.8-28.5Z"/>
+		<path class="b" d="M33.56,33.29L5.06,21.48l-3.06,7.39,28.5,11.8c0-.06,0-.13,0-.19,0-2.83,1.18-5.38,3.07-7.2Z"/>
+		<path class="b" d="M50.48,40.29c0,.06,0,.13,0,.19,0,2.83-1.18,5.38-3.07,7.2l28.5,11.8,3.06-7.39-28.5-11.8Z"/>
+		<path class="b" d="M30.5,40.29L2,52.1l3.06,7.39,28.5-11.8c-1.89-1.82-3.07-4.37-3.07-7.2,0-.06,0-.13,0-.19Z"/>
+		<path class="b" d="M78.97,28.87l-3.06-7.39-28.5,11.8c1.89,1.82,3.07,4.37,3.07,7.2,0,.06,0,.13,0,.19l28.5-11.8Z"/>
+		<path class="b" d="M33.29,47.42l-11.8,28.5,7.39,3.06,11.8-28.5c-.06,0-.13,0-.19,0-2.83,0-5.38-1.18-7.2-3.07Z"/>
+		<path class="b" d="M47.69,33.56L59.49,5.06l-7.39-3.06-11.8,28.5c.06,0,.13,0,.19,0,2.83,0,5.38,1.18,7.2,3.07Z"/>
+		<path class="b" d="M40.49,12.99c-15.19,0-27.5,12.31-27.5,27.5s12.31,27.5,27.5,27.5,27.5-12.31,27.5-27.5-12.31-27.5-27.5-27.5Zm0,35c-4.14,0-7.5-3.36-7.5-7.5s3.36-7.5,7.5-7.5,7.5,3.36,7.5,7.5-3.36,7.5-7.5,7.5Z"/>
+	</svg>`;
+};
+
+function generateGear(color ='#000000'){
+	document.getElementById('gear').innerHTML = gearSVG(color);
+};
+
+function mineSVG(color = '#000000', height = '25'){
+	return `<svg viewBox="0 0 90 90" height=${height} class="d-inline-block">
+		<defs>
+			<style>.b,.c{fill:${color};stroke:${color};stroke-miterlimit:10;}.c{stroke-linecap:round;stroke-width:10px;}</style>
+		</defs>
+		<circle class="b" cx="45" cy="45" r="25"/>
+		<line class="c" x1="85" y1="45" x2="5" y2="45"/>
+		<line class="c" x1="73.28" y1="16.72" x2="16.72" y2="73.28"/>
+		<line class="c" x1="45" y1="5" x2="45" y2="85"/>
+		<line class="c" x1="16.72" y1="16.72" x2="73.28" y2="73.28"/>
+	</svg>`;
+};
+
+function generateMine(color = '#000000'){
+	document.getElementById('mineHeader').insertAdjacentHTML('afterbegin', mineSVG(color, 100));
 };
