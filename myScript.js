@@ -63,7 +63,7 @@ function sweep(x, y) {
             if (cellValue === 0) {
                 cell.innerHTML = '';
             } else if (cellValue === 9) {
-                cell.innerHTML = mineSVG();
+                cell.innerHTML = mineSVG('#FFFFFF');
                 gameOver = true;
             } else {
                 cell.innerHTML = cellValue;
@@ -80,7 +80,7 @@ function flag(x, y) {
     } else {
         let button = document.getElementById(`button-${x}-${y}`);
         if (button.innerHTML == '') {
-            button.innerHTML = flagSVG();
+            button.innerHTML = flagSVG('#FFFFFF');
         } else {
             button.innerHTML = '';
         };
@@ -90,7 +90,7 @@ function flag(x, y) {
 function flagSVG(color = '#000000'){
 	return `<svg viewBox="0 0 52 91" height="17" class="d-inline-block">
 		<defs>
-			<style>.flagStyle{stroke:${color};stroke-linecap:round;stroke-linejoin:round;stroke-width:12px;}</style>
+			<style>.flagStyle{stroke:${color};fill:${color};stroke-linecap:round;stroke-linejoin:round;stroke-width:12px;}</style>
 		</defs>
 		<line class="flagStyle" x1="46" y1="85" x2="46" y2="46"/>
 		<polygon class="flagStyle" points="6 26 46 46 46 6 6 26"/>
@@ -118,22 +118,22 @@ function generateGear(targetId, color ='#000000'){
 	document.getElementById(targetId).innerHTML = gearSVG(color);
 };
 
-function mineSVG(color = '#000000', height = '25'){
+function mineSVG(color = '#000000', height = '25', specifierInfo = ''){
 	return `<svg viewBox="0 0 90 90" height=${height} class="d-inline-block">
 		<defs>
 			<style>
-                .mineCircleStyle, .mineLineStyle {fill:${color} !important;stroke:${color} !important;stroke-miterlimit:10;}
-                .mineLineStyle {stroke-linecap:round;stroke-width:10px;}
+                .mineCircle${specifierInfo}Style, .mineLine${specifierInfo}Style {fill:${color} !important;stroke:${color} !important;stroke-miterlimit:10;}
+                .mineLine${specifierInfo}Style {stroke-linecap:round;stroke-width:10px;}
             </style>
 		</defs>
-		<circle class="mineCircleStyle" cx="45" cy="45" r="25"/>
-		<line class="mineLineStyle" x1="85" y1="45" x2="5" y2="45"/>
-		<line class="mineLineStyle" x1="73.28" y1="16.72" x2="16.72" y2="73.28"/>
-		<line class="mineLineStyle" x1="45" y1="5" x2="45" y2="85"/>
-		<line class="mineLineStyle" x1="16.72" y1="16.72" x2="73.28" y2="73.28"/>
+		<circle class="mineCircle${specifierInfo}Style" cx="45" cy="45" r="25"/>
+		<line class="mineLine${specifierInfo}Style" x1="85" y1="45" x2="5" y2="45"/>
+		<line class="mineLine${specifierInfo}Style" x1="73.28" y1="16.72" x2="16.72" y2="73.28"/>
+		<line class="mineLine${specifierInfo}Style" x1="45" y1="5" x2="45" y2="85"/>
+		<line class="mineLine${specifierInfo}Style" x1="16.72" y1="16.72" x2="73.28" y2="73.28"/>
 	</svg>`;
 };
 
-function generateMine(targetId, color = '#000000'){
-	document.getElementById(targetId).insertAdjacentHTML('afterbegin', mineSVG(color, 100));
+function generateMineHeader(targetId, color = '#000000'){
+	document.getElementById(targetId).insertAdjacentHTML('afterbegin', String(mineSVG(color, 100, 'Icon')));
 };
