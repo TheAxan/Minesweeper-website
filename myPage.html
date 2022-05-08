@@ -37,6 +37,7 @@
       </header>
 
       <main>
+        <p>Clear this minefield to help clear <u>real</u> minefields! <a data-bs-toggle="modal" href="#aboutModal">How so?</a></p>
         <table id="minefield" align="center" style="font-family: 'Rationale', sans-serif; font-size: large;"></table>
       </main>
       
@@ -44,19 +45,38 @@
         <a id='gear' data-bs-toggle="modal" href="#settingsModal"></a>
       </footer>
 
-      <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+      
+      <div id="settingsModal" class="modal fade" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
         <div class="modal-dialog"><!-- use .modal-fullscreen here if needed -->
-          <div class="modal-content">
+          <div class="modal-content bg-dark">
             <div class="modal-header">
               <h5 class="modal-title" id="settingsModalLabel">Modal title</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              ...
+              Work in progress settings page
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="aboutModal" class="modal fade" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content bg-dark">
+            <div class="modal-header">
+              <h5 class="modal-title" id="aboutModalLabel">About us</h5>
+              <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>
+                This is a website where you can play minesweeper whilst supporting a non-profit organisation which clears out minefields and explosives around the world: 
+                The Halo Trust. This website’s extra ad revenue is donated directly to them, so it’s important to disable your adblocker to give your support!
+                If you want to help more concretely, you can go make a donation on <a href="https://www.halotrust.org/">halotrust.org</a>.
+              </p>
             </div>
           </div>
         </div>
