@@ -39,19 +39,22 @@
       <main>
         <p>Clear this minefield to help clear <u>real</u> minefields! <a data-bs-toggle="modal" href="#aboutModal">How so?</a></p>
         <table id="minefield" align="center" style="font-family: 'Rationale', sans-serif; font-size: large;"></table>
+        <br>
+        <a id='gear' data-bs-toggle="modal" href="#settingsModal"></a>
       </main>
       
       <footer class="mt-auto">
         <a id='gear' data-bs-toggle="modal" href="#settingsModal"></a>
+        <a class='fs-7' data-bs-toggle="modal" href="#codeModal">How the code works.</a>
       </footer>
 
       
       <div id="settingsModal" class="modal fade" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
-        <div class="modal-dialog"><!-- use .modal-fullscreen here if needed -->
+        <div class="modal-dialog">
           <div class="modal-content bg-dark">
             <div class="modal-header">
               <h5 class="modal-title" id="settingsModalLabel">Modal title</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               Work in progress settings page
@@ -77,6 +80,20 @@
                 The Halo Trust. This website’s extra ad revenue is donated directly to them, so it’s important to disable your adblocker to give your support!
                 If you want to help more concretely, you can go make a donation on <a href="https://www.halotrust.org/">halotrust.org</a>.
               </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="codeModal" class="modal fade" tabindex="-1" aria-labelledby="codeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen"><!-- use .modal-fullscreen here if needed -->
+          <div class="modal-content bg-dark">
+            <div class="modal-header">
+              <h5 class="modal-title" id="codeModalLabel">The code</h5>
+              <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Work in progress code page
             </div>
           </div>
         </div>
