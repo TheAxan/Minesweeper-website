@@ -38,6 +38,7 @@
 
       <main>
         <p>Clear this minefield to help clear <u>real</u> minefields! <a data-bs-toggle="modal" href="#aboutModal">How so?</a></p>
+        <a data-bs-toggle="modal" href="#howToPlayModal">How to play</a>
         <table id="minefield" align="center" style="font-family: 'Rationale', sans-serif; font-size: large;"></table>
         <br>
         <a id='gear' data-bs-toggle="modal" href="#settingsModal"></a>
@@ -45,7 +46,7 @@
       
       <footer class="mt-auto">
         <a id='gear' data-bs-toggle="modal" href="#settingsModal"></a>
-        <a class='fs-7' data-bs-toggle="modal" href="#codeModal">How the code works.</a>
+        <a class='fs-7' data-bs-toggle="modal" href="#codeModal">How the code works</a>
       </footer>
 
       
@@ -77,8 +78,28 @@
             <div class="modal-body">
               <p>
                 This is a website where you can play minesweeper whilst supporting a non-profit organisation which clears out minefields and explosives around the world: 
-                The Halo Trust. This website’s extra ad revenue is donated directly to them, so it’s important to disable your adblocker to give your support!
+                The Halo Trust. This website's extra ad revenue is donated directly to them, so it's important to disable your adblocker to give your support!
                 If you want to help more concretely, you can go make a donation on <a href="https://www.halotrust.org/">halotrust.org</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="howToPlayModal" class="modal fade" tabindex="-1" aria-labelledby="howToPlayModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content bg-dark">
+            <div class="modal-header">
+              <h5 class="modal-title" id="howToPlayModalLabel">How to play</h5>
+              <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>
+                In minesweeper, your goal is to flag all the hidden mines and explore the rest of the field.
+                When you explore a tile or area by {left clicking} it, it reveals numbers indicating how many mines are in the adjacent tiles.
+                With those you can identify where are the mines and flag them by {right clicking}.
+                If you {left click} a number surrounded by the corresponding number of flags, it explores all the other surrounding tiles.
+                You can read up on strategies <a href="http://computronium.org/minesweeper/index.html">here</a>.
               </p>
             </div>
           </div>
