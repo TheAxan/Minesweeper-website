@@ -1,10 +1,10 @@
-function generateMinefieldTable(height = 10, width = 10, sweep_action = 'onclick', flag_action = 'oncontextmenu') {
+function generateMinefieldTable(targetId, height = 10, width = 10, sweepAction = 'onclick', flagAction = 'oncontextmenu') {
     let output = [];
     for (let y = 0; y < height; y++) {
         let row = [];
         for (let x = 0; x < width; x++) {
             row.push(
-                `<td id='cell-${x}-${y}' ${sweep_action}='sweep(${x}, ${y}); return false;' ${flag_action}='flag(${x}, ${y}); return false;' >
+                `<td id='cell-${x}-${y}' ${sweepAction}='sweep(${x}, ${y}); return false;' ${flagAction}='flag(${x}, ${y}); return false;' >
 					<button id='button-${x}-${y}' type='button' class='btn btn-primary tile'></button>
 				</td>`
             );  
@@ -12,7 +12,7 @@ function generateMinefieldTable(height = 10, width = 10, sweep_action = 'onclick
         output.push(`<tr>${row.join('')}</tr>`);
     };
     output = output.join('');
-    document.getElementById('minefield').innerHTML = output;
+    document.getElementById(targetId).innerHTML = output;
 };
 
 
@@ -114,8 +114,8 @@ function gearSVG(color = '#000000'){
 	</svg>`;
 };
 
-function generateGear(color ='#000000'){
-	document.getElementById('gear').innerHTML = gearSVG(color);
+function generateGear(targetId, color ='#000000'){
+	document.getElementById(targetId).innerHTML = gearSVG(color);
 };
 
 function mineSVG(color = '#000000', height = '25'){
@@ -131,6 +131,6 @@ function mineSVG(color = '#000000', height = '25'){
 	</svg>`;
 };
 
-function generateMine(color = '#000000'){
-	document.getElementById('mineHeader').insertAdjacentHTML('afterbegin', mineSVG(color, 100));
+function generateMine(targetId, color = '#000000'){
+	document.getElementById(targetId).insertAdjacentHTML('afterbegin', mineSVG(color, 100));
 };
