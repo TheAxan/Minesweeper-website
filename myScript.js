@@ -40,14 +40,14 @@ function raiseMinecount(x, y) {
 
 
 var minefield = null;
-var mineCounter = gridHeight * gridWidth * fillRatio;
+var mineCounter = Math.round(gridHeight * gridWidth * fillRatio);
 function generateMinefieldArray() {
     minefield = new Array(gridHeight)
         .fill(null)
         .map(
             () => Array(gridWidth).fill(0)
         );
-    for (let placed = 0; placed <= mineCounter;) {
+    for (let placed = 0; placed < mineCounter;) {
         let x = getRandomInt(0, gridWidth);
         let y = getRandomInt(0, gridHeight);
         if (minefield[y][x] < 9) {
@@ -67,6 +67,13 @@ function regenerateMinefield(x, y) {
 };
 
 
+function checkForWin() {
+    if (explored.size + mineCounter == gridHeight * gridWidth) {
+        document.getElementById('mineCounter').innerHTML = 'Well played!';
+    };
+};
+
+
 var gameOver = false;
 var gameStarted = false;
 var explored = new Set();
@@ -77,8 +84,7 @@ function sweep(x, y) {
         regenerateMinefield(x, y);
         gameStarted = true;
         sweep(x, y);
-    } else if (!explored.has([x, y])) {
-        explored.add([x, y])
+    } else if (!explored.has(String([x, y]))) {
         let cell = document.getElementById(`cell-${x}-${y}`);
         if (document.getElementById(`button-${x}-${y}`) == null) {
             return;
@@ -86,6 +92,7 @@ function sweep(x, y) {
             let cellValue = minefield[y][x];
             if (cellValue === 0) {
                 cell.innerHTML = '';
+                explored.add(String([x, y]));
                 forNeighbors(x, y, sweep);
             } else if (cellValue === 9) {
                 cell.innerHTML = mineSVG('#FFFFFF');
@@ -93,13 +100,15 @@ function sweep(x, y) {
                 document.getElementById('minefield').insertAdjacentHTML(
                     'beforebegin',
                     '<br><button class="btn btn-primary m-2" href="#" onclick="location.reload(true); return false;">Play again</button>'
-                );
-            } else {
-                cell.innerHTML = cellValue;
+                    );
+                } else {
+                    cell.innerHTML = cellValue;
+                    explored.add(String([x, y]));
             };
         } else {
             document.getElementById(`button-${x}-${y}`).innerHTML = '';
         };
+        checkForWin();
     };
 };
 
@@ -113,11 +122,14 @@ function flag(x, y) {
             button.innerHTML = flagSVG('#FFFFFF');
             mineCounter--;
             generateMineCounter('mineCounter', '#FFFFFF');
+            explored.add(String([x, y]));
         } else {
             button.innerHTML = '';
             mineCounter++;
             generateMineCounter('mineCounter', '#FFFFFF');
+            explored.delete(String([x, y]));
         };
+        checkForWin();
     };
 };
 
