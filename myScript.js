@@ -4,7 +4,7 @@ function generateMinefieldTable(targetId, sweepAction = 'onclick', flagAction = 
         let row = [];
         for (let x = 0; x < gridWidth; x++) {
             row.push(
-                `<td id='cell-${x}-${y}' ${sweepAction}='sweep(${x}, ${y}); return false;' ${flagAction}='flag(${x}, ${y}); return false;' >
+                `<td id='cell-${x}-${y}' ${sweepAction}='sweep(${x}, ${y}); return false;' ${flagAction}='flag(${x}, ${y}); return false;' height='31px' width='31px'>
 					<button id='button-${x}-${y}' type='button' class='btn btn-primary tile'></button>
 				</td>`
             );  
