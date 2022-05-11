@@ -47,7 +47,7 @@ function generateMinefieldArray() {
             () => Array(gridWidth).fill(0)
         );
 
-    let fillRatio = 0.2;
+    let fillRatio = 0.1;
 
     for (let placed = 0; placed <= gridHeight * gridWidth * fillRatio;) {
         let x = getRandomInt(0, gridWidth);
@@ -62,11 +62,12 @@ function generateMinefieldArray() {
 
 
 var gameOver = false;
-
+var explored = new Set();
 function sweep(x, y) {
     if (gameOver) {
         return;
-    } else {
+    } else if (!explored.has([x, y])) {
+        explored.add([x, y])
         let cell = document.getElementById(`cell-${x}-${y}`);
         if (document.getElementById(`button-${x}-${y}`) == null) {
             return;
@@ -74,6 +75,7 @@ function sweep(x, y) {
             let cellValue = minefield[y][x];
             if (cellValue === 0) {
                 cell.innerHTML = '';
+                forNeighbors(x, y, sweep);
             } else if (cellValue === 9) {
                 cell.innerHTML = mineSVG('#FFFFFF');
                 gameOver = true;
