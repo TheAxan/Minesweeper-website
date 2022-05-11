@@ -70,7 +70,17 @@ function regenerateMinefield(x, y) {
 function checkForWin() {
     if (explored.size + mineCounter == gridHeight * gridWidth) {
         document.getElementById('mineCounter').innerHTML = 'Well played!';
+        generatePlayAgainButton();
     };
+
+};
+
+
+function generatePlayAgainButton(){
+    document.getElementById('minefield').insertAdjacentHTML(
+        'beforebegin',
+        '<br><button class="btn btn-primary m-2" href="#" onclick="location.reload(true); return false;">Play again</button>'
+    );
 };
 
 
@@ -97,10 +107,7 @@ function sweep(x, y) {
             } else if (cellValue === 9) {
                 cell.innerHTML = mineSVG('#FFFFFF');
                 gameOver = true;
-                document.getElementById('minefield').insertAdjacentHTML(
-                    'beforebegin',
-                    '<br><button class="btn btn-primary m-2" href="#" onclick="location.reload(true); return false;">Play again</button>'
-                    );
+                generatePlayAgainButton();
                 } else {
                     cell.innerHTML = cellValue;
                     explored.add(String([x, y]));
