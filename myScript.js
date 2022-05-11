@@ -22,6 +22,23 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 };
 
+
+function forNeighbors(x, y, target) {
+    for (let [j, i] of [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]) {
+        if (-1 < y+j && y+j < height && -1 < x+i && x+i < width) {
+            target(x+i, y+j);
+        };
+    };
+};
+
+
+function raiseMinecount(x, y) {
+    if (minefield[y][x] < 9) {
+        minefield[y][x]++;
+    };
+};
+
+
 var minefield = null;
 function generateMinefieldArray(height = 10, width = 10) {
     minefield = new Array(height)
@@ -37,17 +54,12 @@ function generateMinefieldArray(height = 10, width = 10) {
         let y = getRandomInt(0, height);
         if (minefield[y][x] < 9) {
             minefield[y][x] = 9;
-            for (let [j, i] of [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]) {
-                if (-1 < y+j && y+j < height 
-                        && -1 < x+i && x+i < width 
-                        && minefield[y+j][x+i] < 9) {
-                    minefield[y+j][x+i]++;
-                };
-            };
-            placed++;
+            forNeighbors(raiseMinecount);
         };
+        placed++;
     };
 };
+
 
 var gameOver = false;
 
@@ -78,6 +90,7 @@ function sweep(x, y) {
     };
 };
 
+
 function flag(x, y) {
     if (gameOver) {
         return;
@@ -91,6 +104,7 @@ function flag(x, y) {
     };
 };
 
+
 function flagSVG(color = '#000000'){
 	return `<svg viewBox="0 0 52 91" height="17" class="d-inline-block">
 		<defs>
@@ -100,6 +114,7 @@ function flagSVG(color = '#000000'){
 		<polygon class="flagStyle" points="6 26 46 46 46 6 6 26"/>
 	</svg>`;
 };
+
 
 function gearSVG(color = '#000000'){
 	return `<svg viewBox="0 0 80.97 80.97" width="60">
@@ -118,9 +133,11 @@ function gearSVG(color = '#000000'){
 	</svg>`;
 };
 
+
 function generateGear(targetId, color ='#000000'){
 	document.getElementById(targetId).innerHTML = gearSVG(color);
 };
+
 
 function mineSVG(color = '#000000', height = '25', specifierInfo = ''){
 	return `<svg viewBox="0 0 90 90" height=${height} class="d-inline-block">
@@ -137,6 +154,7 @@ function mineSVG(color = '#000000', height = '25', specifierInfo = ''){
 		<line class="mineLine${specifierInfo}Style" x1="16.72" y1="16.72" x2="73.28" y2="73.28"/>
 	</svg>`;
 };
+
 
 function generateMineHeader(targetId, color = '#000000'){
 	document.getElementById(targetId).insertAdjacentHTML('afterbegin', String(mineSVG(color, 100, 'Icon')));
