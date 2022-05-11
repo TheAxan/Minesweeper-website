@@ -80,9 +80,8 @@ function generatePlayAgainButton(){
     document.getElementById('minefield').insertAdjacentHTML(
         'beforebegin',
         '<br><button class="btn btn-primary m-2" href="#" onclick="location.reload(true); return false;">Play again</button>'
-    );
+        );
 };
-
 
 var gameOver = false;
 var gameStarted = false;

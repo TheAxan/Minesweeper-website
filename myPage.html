@@ -36,19 +36,21 @@
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
       
       <header class="mb-auto">
-        <a id='mineHeader' href="/" align='center' class=" mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <a id='mineHeader' href="/" align='center' class="mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <span class="display-4 align-middle" style="font-family: 'Rationale', Verdana, sans-serif">MineSweeter</span>
         </a>
       </header>
 
       <main>
-        <p>Clear this minefield to help clear <u>real</u> minefields! <a data-bs-toggle="modal" href="#aboutModal">How so?</a></p>
-        <a data-bs-toggle="modal" href="#howToPlayModal">How to play</a>
-        <table id="minefield" align="center" class="number-text"></table>
-        
-        <p id='mineCounter' class="m-3"></p>
-        
-        <a id='gear' data-bs-toggle="modal" href="#settingsModal"></a>
+        <div id="infotext">
+          <p>Clear this minefield to help clear <u>real</u> minefields! <a data-bs-toggle="modal" href="#aboutModal">How so?</a></p>
+          <a data-bs-toggle="modal" href="#howToPlayModal">How to play</a>
+        </div>
+        <div id="playboard">
+          <table id="minefield" align="center" class="number-text mt-3"></table>
+          <p id='mineCounter' class="m-3"></p>
+          <a id='gear' data-bs-toggle="modal" href="#settingsModal" class="my-3"></a>
+        </div>
       </main>
       
       <footer class="mt-auto">
