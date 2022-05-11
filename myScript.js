@@ -47,7 +47,7 @@ function generateMinefieldArray() {
             () => Array(gridWidth).fill(0)
         );
 
-    let fillRatio = 0.1;
+    let fillRatio = 0.2; //if this is too high the guaranteed empty start can take while
 
     for (let placed = 0; placed <= gridHeight * gridWidth * fillRatio;) {
         let x = getRandomInt(0, gridWidth);
@@ -61,11 +61,24 @@ function generateMinefieldArray() {
 };
 
 
+function regenerateMinefield(x, y) {
+    if (minefield[y][x] !== 0) {
+        generateMinefieldArray();
+        regenerateMinefield(x, y);
+    };
+};
+
+
 var gameOver = false;
+var gameStarted = false;
 var explored = new Set();
 function sweep(x, y) {
     if (gameOver) {
         return;
+    } else if (!gameStarted) {
+        regenerateMinefield(x, y);
+        gameStarted = true;
+        sweep(x, y);
     } else if (!explored.has([x, y])) {
         explored.add([x, y])
         let cell = document.getElementById(`cell-${x}-${y}`);
