@@ -1,8 +1,8 @@
-function generateMinefieldTable(targetId, height = 10, width = 10, sweepAction = 'onclick', flagAction = 'oncontextmenu') {
+function generateMinefieldTable(targetId, sweepAction = 'onclick', flagAction = 'oncontextmenu') {
     let output = [];
-    for (let y = 0; y < height; y++) {
+    for (let y = 0; y < gridHeight; y++) {
         let row = [];
-        for (let x = 0; x < width; x++) {
+        for (let x = 0; x < gridWidth; x++) {
             row.push(
                 `<td id='cell-${x}-${y}' ${sweepAction}='sweep(${x}, ${y}); return false;' ${flagAction}='flag(${x}, ${y}); return false;' >
 					<button id='button-${x}-${y}' type='button' class='btn btn-primary tile'></button>
@@ -25,7 +25,7 @@ function getRandomInt(min, max) {
 
 function forNeighbors(x, y, target) {
     for (let [j, i] of [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]) {
-        if (-1 < y+j && y+j < height && -1 < x+i && x+i < width) {
+        if (-1 < y+j && y+j < gridHeight && -1 < x+i && x+i < gridWidth) {
             target(x+i, y+j);
         };
     };
@@ -40,21 +40,21 @@ function raiseMinecount(x, y) {
 
 
 var minefield = null;
-function generateMinefieldArray(height = 10, width = 10) {
-    minefield = new Array(height)
+function generateMinefieldArray() {
+    minefield = new Array(gridHeight)
         .fill(null)
         .map(
-            () => Array(width).fill(0)
+            () => Array(gridWidth).fill(0)
         );
 
     let fillRatio = 0.2;
 
-    for (let placed = 0; placed <= height * width * fillRatio;) {
-        let x = getRandomInt(0, width);
-        let y = getRandomInt(0, height);
+    for (let placed = 0; placed <= gridHeight * gridWidth * fillRatio;) {
+        let x = getRandomInt(0, gridWidth);
+        let y = getRandomInt(0, gridHeight);
         if (minefield[y][x] < 9) {
             minefield[y][x] = 9;
-            forNeighbors(raiseMinecount);
+            forNeighbors(x, y, raiseMinecount);
         };
         placed++;
     };
