@@ -40,23 +40,21 @@ function raiseMinecount(x, y) {
 
 
 var minefield = null;
+var mineCounter = gridHeight * gridWidth * fillRatio;
 function generateMinefieldArray() {
     minefield = new Array(gridHeight)
         .fill(null)
         .map(
             () => Array(gridWidth).fill(0)
         );
-
-    let fillRatio = 0.2; //if this is too high the guaranteed empty start can take while
-
-    for (let placed = 0; placed <= gridHeight * gridWidth * fillRatio;) {
+    for (let placed = 0; placed <= mineCounter;) {
         let x = getRandomInt(0, gridWidth);
         let y = getRandomInt(0, gridHeight);
         if (minefield[y][x] < 9) {
             minefield[y][x] = 9;
             forNeighbors(x, y, raiseMinecount);
+            placed++;
         };
-        placed++;
     };
 };
 
@@ -113,8 +111,12 @@ function flag(x, y) {
         let button = document.getElementById(`button-${x}-${y}`);
         if (button.innerHTML == '') {
             button.innerHTML = flagSVG('#FFFFFF');
+            mineCounter--;
+            generateMineCounter('mineCounter', '#FFFFFF');
         } else {
             button.innerHTML = '';
+            mineCounter++;
+            generateMineCounter('mineCounter', '#FFFFFF');
         };
     };
 };
@@ -173,4 +175,9 @@ function mineSVG(color = '#000000', height = '25', specifierInfo = ''){
 
 function generateMineHeader(targetId, color = '#000000'){
 	document.getElementById(targetId).insertAdjacentHTML('afterbegin', String(mineSVG(color, 100, 'Icon')));
+};
+
+
+function generateMineCounter(targetId, color){
+    document.getElementById(targetId).innerHTML = mineCounter + ' ' + mineSVG(color);
 };
