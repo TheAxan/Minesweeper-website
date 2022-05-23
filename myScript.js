@@ -23,12 +23,21 @@ function getRandomInt(min, max) {
 };
 
 
-function forNeighbors(x, y, target) {
-    for (let [j, i] of [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]) {
+function forNeighbors(x, y, func) {
+    for (let [i, j] of neighborsArray(x, y)) {
+        func(i, j);
+    };
+};
+
+
+function neighborsArray(x, y) {
+    let output = new Array;
+    for (let [i, j] of [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]) {
         if (-1 < y+j && y+j < gridHeight && -1 < x+i && x+i < gridWidth) {
-            target(x+i, y+j);
+           output.push([x+i, y+j]);
         };
     };
+    return output;
 };
 
 
