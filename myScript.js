@@ -1,4 +1,4 @@
-function generateMinefieldTable(targetId, sweepAction = 'onclick', flagAction = 'oncontextmenu') {
+function generateMinefieldTable(targetId) {
     let output = [];
     for (let y = 0; y < gridHeight; y++) {
         let row = [];
