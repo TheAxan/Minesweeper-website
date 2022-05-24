@@ -118,6 +118,12 @@ function sweep(x, y) {
             explored.add(String([x, y]));
         };
         checkForWin();
+    } else {  // explored
+        if (document.getElementById(`button-${x}-${y}`) == null) { // swept
+            
+        } else { // flagged
+            flag(x, y);
+        };
     };
 };
 
