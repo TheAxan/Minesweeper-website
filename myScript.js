@@ -104,24 +104,18 @@ function sweep(x, y) {
         sweep(x, y);
     } else if (!explored.has(String([x, y]))) {
         let cell = document.getElementById(`cell-${x}-${y}`);
-        if (document.getElementById(`button-${x}-${y}`) == null) {
-            return;
-        } else if (document.getElementById(`button-${x}-${y}`).innerHTML == ''){
-            let cellValue = minefield[y][x];
-            if (cellValue === 0) {
-                cell.innerHTML = '';
-                explored.add(String([x, y]));
-                forNeighbors(x, y, sweep);
-            } else if (cellValue === 9) {
-                cell.innerHTML = mineSVG('#FFFFFF');
-                gameOver = true;
-                generatePlayAgainButton();
-                } else {
-                    cell.innerHTML = cellValue;
-                    explored.add(String([x, y]));
-            };
+        let cellValue = minefield[y][x];
+        if (cellValue === 0) {
+            cell.innerHTML = '';
+            explored.add(String([x, y]));
+            forNeighbors(x, y, sweep);
+        } else if (cellValue === 9) {
+            cell.innerHTML = mineSVG('#FFFFFF');
+            gameOver = true;
+            generatePlayAgainButton();
         } else {
-            document.getElementById(`button-${x}-${y}`).innerHTML = '';
+            cell.innerHTML = cellValue;
+            explored.add(String([x, y]));
         };
         checkForWin();
     };
