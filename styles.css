@@ -1,0 +1,41 @@
+.tile{
+    height:25px; 
+    width:25px;
+    margin: 2px;
+    padding: 0;
+    border: 0;
+}
+
+.number-text{
+  font-family: 'Rationale', sans-serif;
+  font-size: large;
+}
+
+.ad{
+  background: #ffffff;
+  color: #000;
+}
+
+.ad-mobile-banner{
+  width: 320px;
+  height: 50px;
+}
+
+.ad-full-banner{
+  width: 468px;
+  height: 60px;
+}
+
+.ad-leaderboard{
+  width: 728px;
+  height: 90px;
+}
+
+.ad-skyscrapper{
+  width: 160px;
+  height: 600px;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
