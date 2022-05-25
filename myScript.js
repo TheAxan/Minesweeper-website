@@ -4,8 +4,8 @@ function generateMinefieldTable(targetId) {
         let row = [];
         for (let x = 0; x < gridWidth; x++) {
             row.push(
-                `<td id='cell-${x}-${y}' ${sweepAction}='sweep(${x}, ${y}); return false;' ${flagAction}='flag(${x}, ${y}); return false;' height='31px' width='31px'>
-					<button id='button-${x}-${y}' type='button' class='btn btn-primary tile'></button>
+                `<td id='cell-${x}-${y}'  height='31px' width='31px'>
+					<button id='button-${x}-${y}' type='button' class='btn btn-primary tile' ${sweepAction}='sweep(${x}, ${y}); event.stopPropagation(); return false;' ${flagAction}='flag(${x}, ${y}); return false;'></button>
 				</td>`
             );  
         };
@@ -95,7 +95,7 @@ function generatePlayAgainButton(){
 var gameOver = false;
 var gameStarted = false;
 var explored = new Set();
-function sweep(x, y) {
+function sweep(x, y, recursive=false) {
     if (gameOver) {
         return;
     } else if (!gameStarted) {
@@ -108,21 +108,26 @@ function sweep(x, y) {
         if (cellValue === 0) {
             cell.innerHTML = '';
             explored.add(String([x, y]));
-            forNeighbors(x, y, sweep);
+            for (let [i, j] of neighborsArray(x, y)) {
+                sweep(i, j, true);
+            };
         } else if (cellValue === 9) {
             cell.innerHTML = mineSVG('#FFFFFF');
             gameOver = true;
             generatePlayAgainButton();
         } else {
             cell.innerHTML = cellValue;
+            cell.setAttribute(sweepAction, `sweep(${x}, ${y}); event.stopPropagation(); return false;`)
             explored.add(String([x, y]));
         };
         checkForWin();
-    } else {  // explored
-        if (document.getElementById(`button-${x}-${y}`) == null) { // swept
-            
-        } else { // flagged
+    } else if (!recursive) {  // explored and manual sweep
+        if (document.getElementById(`button-${x}-${y}`) != null) { // flagged
             flag(x, y);
+        } else { // chaining
+            for (let [i, j] of neighborsArray(x, y)) {
+                sweep(i, j, true);
+            };
         };
     };
 };
