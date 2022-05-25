@@ -15,106 +15,153 @@
 </head>
 <body class="d-flex h-100 text-center text-white bg-dark">
   <div class="container-fluid w-100 h-100">
-    <div class="row h-100">
-      <div class="col-3 d-none d-lg-flex h-100 align-items-center" >
-        <div class="ad ad-skyscrapper m-3 me-auto d-flex align-items-center justify-content-center ">Ad skyscrapper</div>
+    <div class="row h-100 d-flex">
+      
+      <div class="col-3 ad-skyscrapper me-auto d-none d-lg-flex
+                  align-self-center align-items-center justify-content-center ">
+        Ad skyscrapper
       </div>
 
-      <div class="col-lg-6 cover-container d-flex vh-100 p-3 mx-auto flex-column">
-        <header class="mb-auto">
-          <a id='mineHeader' href="/" class="my-3 mx-auto d-inline-block text-white text-decoration-none">
-            <span class="display-4 align-middle" style="font-family: 'Rationale'">MineSweeter</span>
-          </a>
-          <div id="infotext">
-            <p>Clear this minefield to help clear <u data-bs-toggle="tooltip" data-bs-placement="top" title="Yes, real world minefields">real</u> minefields! <a data-bs-toggle="modal" href="#aboutModal">How so?</a></p>
-            <a data-bs-toggle="modal" href="#howToPlayModal">How to play</a>
-          </div>
+      <div class="col-lg-6 d-flex vh-100 p-3 mx-auto flex-column">
 
-          <div class="d-sm-none">
-            <div class="ad ad-mobile-banner m-3 mx-auto d-flex align-items-center justify-content-center">Ad mobile banner</div>
+        <header class="mb-auto">
+          <a id='mineHeader' href="/" 
+              class="my-3 mx-auto d-inline-block text-white text-decoration-none">
+            <span class="display-4 align-middle" 
+                  style="font-family: 'Rationale'">
+              MineSweeter
+            </span>
+          </a>
+
+          <p>
+            Clear this minefield to help clear
+            <u data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Yes, real world minefields">real</u>
+            minefields! 
+            <a data-bs-toggle="modal" href="#aboutModal">How so?</a>
+          </p>
+
+          <a data-bs-toggle="modal" href="#howToPlayModal">How to play</a>
+
+          <div class="ad-mobile-banner d-flex d-sm-none
+                      align-items-center justify-content-center">
+            Ad mobile banner
           </div>
-          <div class="d-none d-sm-block d-md-none">
-            <div class="ad ad-full-banner m-3 mx-auto d-flex align-items-center justify-content-center">Ad full banner</div>
+          <div class="ad-full-banner d-none d-sm-flex d-md-none
+                      align-items-center justify-content-center">
+            Ad full banner
           </div>
-          <div class="d-none d-md-block d-lg-none">
-            <div class="ad ad-leaderboard m-3 mx-auto d-flex align-items-center justify-content-center">Ad leaderboard</div>
+          <div class="ad-leaderboard d-none d-md-flex d-lg-none
+                      align-items-center justify-content-center">
+            Ad leaderboard
           </div>
         </header>
 
         <main>
-          <div id="playboard">
-            <table id="minefield" class="number-text mt-3 mx-auto"></table>
-            <p id='mineCounter' class="m-3 d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Number of remaining mines"></p>
-            <br>
-            <div data-bs-toggle="tooltip" data-bs-placement="top" title="Settings" class="d-inline-block">
-              <a id='gear' data-bs-toggle="modal" href="#settingsModal" class="my-3"></a>
-            </div>
+          <table id="minefield" class="number-text mt-3 mx-auto"></table>
+
+          <p id='mineCounter' class="m-3 d-inline-block" 
+              data-bs-toggle="tooltip" data-bs-placement="top"
+              title="Number of remaining mines">
+          </p>
+          <br>
+          
+          <div data-bs-toggle="tooltip" data-bs-placement="top"
+               title="Settings" class="d-inline-block">
+            <a id='gear' data-bs-toggle="modal" 
+                href="#settingsModal" class="my-3">
+            </a>
           </div>
         </main>
         
         <footer class="mt-auto">
           <a id='gear' data-bs-toggle="modal" href="#settingsModal"></a>
-          <a class='fs-7' data-bs-toggle="modal" href="#codeModal">How the code works</a>
           
-          <div class="d-sm-none">
-            <div class="ad ad-mobile-banner m-3 mx-auto d-flex align-items-center justify-content-center">Ad mobile banner</div>
+          <a class='fs-7' data-bs-toggle="modal" href="#codeModal">
+            How the code works
+          </a>
+          
+          <div class="ad-mobile-banner d-flex d-sm-none
+                      align-items-center justify-content-center">
+            Ad mobile banner
           </div>
-          <div class="d-none d-sm-block d-md-none">
-            <div class="ad ad-full-banner m-3 mx-auto d-flex align-items-center justify-content-center">Ad full banner</div>
+          <div class="ad-full-banner d-none d-sm-flex d-md-none
+                      align-items-center justify-content-center">
+            Ad full banner
           </div>
-          <div class="d-none d-md-block d-lg-none">
-            <div class="ad ad-leaderboard m-3 mx-auto d-flex align-items-center justify-content-center">Ad leaderboard</div>
+          <div class="ad-leaderboard d-none d-md-flex d-lg-none
+                      align-items-center justify-content-center">
+            Ad leaderboard
           </div>
         </footer>
+
       </div>
       
-      <div class="col-3 d-none d-lg-flex h-100 align-items-center" >
-        <div class="ad ad-skyscrapper m-3 ms-auto d-flex align-items-center justify-content-center ">Ad skyscrapper</div>
+      <div class="col-3 ad-skyscrapper ms-auto d-none d-lg-flex
+                  align-self-center align-items-center justify-content-center">
+        Ad skyscrapper
       </div>
+
     </div>
   </div>
 
       
-  <div id="settingsModal" class="modal fade" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+  <div id="settingsModal" class="modal fade" tabindex="-1" 
+       aria-labelledby="settingsModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content bg-dark">
         <div class="modal-header">
           <h5 class="modal-title" id="settingsModalLabel">Modal title</h5>
-          <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close bg-light" 
+                  data-bs-dismiss="modal" aria-label="Close">
+          </button>
         </div>
         <div class="modal-body">
           Work in progress settings page
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" 
+                  data-bs-dismiss="modal">
+            Close
+          </button>
           <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
   </div>
-  <div id="aboutModal" class="modal fade" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+
+  <div id="aboutModal" class="modal fade" tabindex="-1" 
+       aria-labelledby="aboutModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content bg-dark">
         <div class="modal-header">
           <h5 class="modal-title" id="aboutModalLabel">About us</h5>
-          <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close bg-light" 
+                  data-bs-dismiss="modal" aria-label="Close">
+          </button>
         </div>
         <div class="modal-body">
           <p>
             This is a website where you can play minesweeper whilst supporting a non-profit organisation which clears out minefields and explosives around the world: 
-            The Halo Trust. This website's extra ad revenue is donated directly to them, so it's important to disable your adblocker and give your support!
-            If you want to help more concretely, you can go make a donation on <a href="https://www.halotrust.org/">halotrust.org</a>.
+            The Halo Trust.
+            This website's extra ad revenue is donated directly to them, so it's important to disable your adblocker and give your support!
+            If you want to help more concretely, you can go make a donation on
+            <a href="https://www.halotrust.org/">halotrust.org</a>.
           </p>
         </div>
       </div>
     </div>
   </div>
-  <div id="howToPlayModal" class="modal fade" tabindex="-1" aria-labelledby="howToPlayModalLabel" aria-hidden="true">
+
+  <div id="howToPlayModal" class="modal fade" tabindex="-1" 
+       aria-labelledby="howToPlayModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content bg-dark">
         <div class="modal-header">
           <h5 class="modal-title" id="howToPlayModalLabel">How to play</h5>
-          <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close bg-light" 
+                  data-bs-dismiss="modal" aria-label="Close">
+          </button>
         </div>
         <div class="modal-body">
           <p>
@@ -122,18 +169,23 @@
             When you explore a tile or area by {left clicking} it, it reveals numbers indicating how many mines are in the adjacent tiles.
             With those you can identify where are the mines and flag them by {right clicking}.
             If you {left click} a number surrounded by the corresponding number of flags, it explores all the other surrounding tiles.
-            You can read up on strategies <a href="http://computronium.org/minesweeper/index.html">here</a>.
+            You can read up on strategies
+            <a href="http://computronium.org/minesweeper/index.html">here</a>.
           </p>
         </div>
       </div>
     </div>
   </div>
-  <div id="codeModal" class="modal fade" tabindex="-1" aria-labelledby="codeModalLabel" aria-hidden="true">
+
+  <div id="codeModal" class="modal fade" tabindex="-1" 
+       aria-labelledby="codeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
       <div class="modal-content bg-dark">
         <div class="modal-header">
           <h5 class="modal-title" id="codeModalLabel">The code</h5>
-          <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close bg-light" 
+              data-bs-dismiss="modal" aria-label="Close">
+          </button>
         </div>
         <div class="modal-body">
           Work in progress code page
