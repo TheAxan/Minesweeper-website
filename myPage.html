@@ -26,6 +26,31 @@
       font-size: large;
     }
 
+  .ad{
+    background: #ffffff;
+    color: #000;
+  }
+
+  .ad-mobile-banner{
+    width: 320px;
+    height: 50px;
+  }
+  
+  .ad-full-banner{
+    width: 468px;
+    height: 60px;
+  }
+
+  .ad-leaderboard{
+    width: 728px;
+    height: 90px;
+  }
+  
+  .ad-skyscrapper{
+    width: 160px;
+    height: 600px;
+  }
+  
     body {
       font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
@@ -33,21 +58,36 @@
 
   <body class="d-flex h-100 text-center text-white bg-dark">
     
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-      
+<div class="container-fluid w-100 h-100">
+  <div class="row h-100">
+    <div class="col-3 d-none d-lg-flex h-100 align-items-center" >
+      <div class="ad ad-skyscrapper m-3 me-auto d-flex align-items-center justify-content-center ">Ad skyscrapper</div>
+    </div>
+
+    <div class="col-lg-6 cover-container d-flex vh-100 p-3 mx-auto flex-column">
       <header class="mb-auto">
-        <a id='mineHeader' href="/" align='center' class="m-3 d-inline-block text-white text-decoration-none">
+        <a id='mineHeader' href="/" class="my-3 mx-auto d-inline-block text-white text-decoration-none">
           <span class="display-4 align-middle" style="font-family: 'Rationale'">MineSweeter</span>
         </a>
         <div id="infotext">
           <p>Clear this minefield to help clear <u data-bs-toggle="tooltip" data-bs-placement="top" title="Yes, real world minefields">real</u> minefields! <a data-bs-toggle="modal" href="#aboutModal">How so?</a></p>
           <a data-bs-toggle="modal" href="#howToPlayModal">How to play</a>
         </div>
+
+        <div class="d-sm-none">
+          <div class="ad ad-mobile-banner m-3 mx-auto d-flex align-items-center justify-content-center">Ad mobile banner</div>
+        </div>
+        <div class="d-none d-sm-block d-md-none">
+          <div class="ad ad-full-banner m-3 mx-auto d-flex align-items-center justify-content-center">Ad full banner</div>
+        </div>
+        <div class="d-none d-md-block d-lg-none">
+          <div class="ad ad-leaderboard m-3 mx-auto d-flex align-items-center justify-content-center">Ad leaderboard</div>
+        </div>
       </header>
 
       <main>
         <div id="playboard">
-          <table id="minefield" align="center" class="number-text mt-3"></table>
+          <table id="minefield" class="number-text mt-3 mx-auto"></table>
           <p id='mineCounter' class="m-3 d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Number of remaining mines"></p>
           <br>
 		      <div data-bs-toggle="tooltip" data-bs-placement="top" title="Settings" class="d-inline-block">
@@ -59,7 +99,24 @@
       <footer class="mt-auto">
         <a id='gear' data-bs-toggle="modal" href="#settingsModal"></a>
         <a class='fs-7' data-bs-toggle="modal" href="#codeModal">How the code works</a>
+        
+        <div class="d-sm-none">
+          <div class="ad ad-mobile-banner m-3 mx-auto d-flex align-items-center justify-content-center">Ad mobile banner</div>
+        </div>
+        <div class="d-none d-sm-block d-md-none">
+          <div class="ad ad-full-banner m-3 mx-auto d-flex align-items-center justify-content-center">Ad full banner</div>
+        </div>
+        <div class="d-none d-md-block d-lg-none">
+          <div class="ad ad-leaderboard m-3 mx-auto d-flex align-items-center justify-content-center">Ad leaderboard</div>
+        </div>
       </footer>
+    </div>
+    
+    <div class="col-3 d-none d-lg-flex h-100 align-items-center" >
+      <div class="ad ad-skyscrapper m-3 ms-auto d-flex align-items-center justify-content-center ">Ad skyscrapper</div>
+    </div>
+  </div>
+</div>
 
       
       <div id="settingsModal" class="modal fade" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
@@ -132,7 +189,6 @@
         </div>
 	    </div>
       
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script>
