@@ -1,3 +1,10 @@
+const gridHeight = 10;
+const gridWidth = 10;
+const fillRatio = 0.2; // if this is too high the guaranteed empty start can take a while
+const sweepAction = 'onclick';
+const flagAction = 'oncontextmenu';
+
+
 function generateMinefieldTable(targetId) {
     let output = [];
     for (let y = 0; y < gridHeight; y++) {
@@ -213,3 +220,17 @@ function generateMineHeader(targetId, color = '#000000'){
 function generateMineCounter(targetId, color){
     document.getElementById(targetId).innerHTML = mineCounter + ' ' + mineSVG(color);
 };
+
+
+// enable tooltips
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+});
+
+
+generateMinefieldTable('minefield');
+generateMinefieldArray();
+generateGear('gear', '#FFFFFF');
+generateMineHeader('mineHeader','#FFFFFF');
+generateMineCounter('mineCounter', '#FFFFFF');
