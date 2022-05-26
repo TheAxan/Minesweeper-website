@@ -278,6 +278,10 @@ function generateDropdown() {
         .innerHTML = `Fill ratio (${tempFillRatio * 100}%) `;
     document.getElementById('sweepDropdown')
         .innerHTML = `Sweep action (${sweepActionText(tempSweepAction)}) `;
+    document.getElementById('fontDropdown')
+        .innerHTML = `Font (<span style="font-family: '${tempFont}';">
+                                123456789
+                            </span>)`;
 };
 
 
@@ -318,12 +322,19 @@ function setSweepAction(primaryAction, secondaryAction) {
 };
 
 
+let tempFont = numbersFont;
+function setFont(font) {
+    tempFont = font;
+    generateDropdown();
+};
+
 function applyChanges() {
     localStorage.setItem('gridHeight', tempHeight);
     localStorage.setItem('gridWidth', tempWidth);
     localStorage.setItem('fillRatio', tempFillRatio);
     localStorage.setItem('sweepAction', tempSweepAction);
     localStorage.setItem('flagAction', tempFlagAction);
+    localStorage.setItem('numbersFont', tempFont);
     location.reload(true)
 };
 
@@ -332,6 +343,9 @@ function cancelChanges() {
     tempHeight = gridHeight;
     tempWidth = gridWidth;
     tempFillRatio = fillRatio;
+    tempSweepAction = sweepAction;
+    tempFlagAction = flagAction;
+    tempFont = numbersFont;
     generateDropdown();
 };
 
@@ -341,7 +355,7 @@ function applyNumbersFont() {
         .insertAdjacentHTML('beforebegin',
             `<style>
                 .number-text{
-                    font-family: ${numbersFont};
+                    font-family: '${numbersFont}';
                     font-size: large;
                 }
             </style>`
