@@ -1,7 +1,7 @@
 let gridHeight = parseInt(localStorage.getItem('gridHeight')) || 9;
 let gridWidth = parseInt(localStorage.getItem('gridWidth')) || 9;
 let fillRatio = localStorage.getItem('fillRatio') || 0.2; // if this is too high the guaranteed empty start can take a while
-let sweepAction = localStorage.getItem('sweepAction') || 'onclick';
+let sweepAction = localStorage.getItem('sweepAction') || 'onspacebar';
 let flagAction = localStorage.getItem('flagAction') || 'oncontextmenu';
 
 
@@ -275,6 +275,20 @@ function generateDropdown() {
         .innerHTML = `Grid size (${tempHeight} x ${tempWidth}) `;
     document.getElementById('fillRatioDropdown')
         .innerHTML = `Fill ratio (${tempFillRatio * 100}%) `;
+    document.getElementById('sweepDropdown')
+        .innerHTML = `Sweep action (${sweepActionText(tempSweepAction)}) `;
+};
+
+
+function sweepActionText(action) {
+    switch (action) {
+        case 'onclick' :
+            return 'Left click';
+        case 'oncontextmenu' :
+            return 'Right click';
+        case _ :
+            return 'Error';
+    };
 };
 
 
@@ -293,10 +307,22 @@ function setFillRatio(ratio) {
 };
 
 
+// makeshift implementation
+let tempSweepAction = sweepAction;
+let tempFlagAction = flagAction;
+function setSweepAction(primaryAction, secondaryAction) {
+    tempSweepAction = primaryAction;
+    tempFlagAction = secondaryAction;
+    generateDropdown();
+};
+
+
 function applyChanges() {
     localStorage.setItem('gridHeight', tempHeight);
     localStorage.setItem('gridWidth', tempWidth);
     localStorage.setItem('fillRatio', tempFillRatio);
+    localStorage.setItem('sweepAction', tempSweepAction);
+    localStorage.setItem('flagAction', tempFlagAction);
     location.reload(true)
 };
 

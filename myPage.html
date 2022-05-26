@@ -218,6 +218,28 @@
 
           <div class="dropdown m-3">
             <button class="btn btn-secondary dropdown-toggle btn-sm"
+                    type="button" id="sweepDropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="sweepDropdown">
+              <!-- makeshift implementation -->
+              <li>
+                <a class="dropdown-item" href="#"
+                    onclick="setSweepAction('onclick', 'oncontextmenu'); return false">
+                  Left click
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                    onclick="setSweepAction('oncontextmenu', 'onclick'); return false">
+                  Right click
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="dropdown m-3">
+            <button class="btn btn-secondary dropdown-toggle btn-sm"
                     type="button" id="dropdownMenuButton1"
                     data-bs-toggle="dropdown" aria-expanded="false">
               Dropdown button
@@ -226,16 +248,6 @@
               <li>
                 <a class="dropdown-item" href="#">
                   Action
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">
-                  Another action
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">
-                  Something else here
                 </a>
               </li>
             </ul>
