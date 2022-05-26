@@ -111,31 +111,73 @@
     <div class="modal-dialog">
       <div class="modal-content bg-dark">
         <div class="modal-header">
-          <h5 class="modal-title" id="settingsModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="settingsModalLabel">Settings</h5>
           <button type="button" class="btn-close bg-light" 
                   data-bs-dismiss="modal" aria-label="Close">
           </button>
         </div>
         <div class="modal-body">
-          
-
           <div class="dropdown">
-            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="sizeDropdown" data-bs-toggle="dropdown" aria-expanded="false"></button>
+            <button class="btn btn-secondary btn-sm dropdown-toggle"
+                    type="button" id="sizeDropdown" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+            </button>
             <ul class="dropdown-menu" aria-labelledby="sizeDropdown">
-              <li><a class="dropdown-item" href="#" onclick="setSize(9, 9); return false;">9 x 9</a></li>
-              <li><a class="dropdown-item" href="#" onclick="setSize(16, 16); return false;">16 x 16</a></li>
-              <li><a class="dropdown-item" href="#" onclick="setSize(16, 30); return false;">16 x 30</a></li>
+              <li>
+                <a class="dropdown-item" href="#"
+                    onclick="setSize(9, 9); return false;">
+                  9 x 9
+                </a>
+              </li>
+              <li class="d-md-none">
+                <a class="dropdown-item" href="#" 
+                       onclick="setSize(16, 9); return false;">
+                  16 x 9
+                </a>
+              </li>
+              <li class="d-none d-md-flex">
+                <a class="dropdown-item" href="#" 
+                       onclick="setSize(9, 16); return false;">
+                  9 x 16
+                </a>
+              </li>
+              <li class="d-none d-md-flex">
+                <a class="dropdown-item" href="#" 
+                       onclick="setSize(16, 16); return false;">
+                  16 x 16
+                </a>
+              </li>
+              <li class="d-none d-xxl-flex">
+                <a class="dropdown-item" href="#"
+                    onclick="setSize(16, 30); return false;">
+                  16 x 30
+                </a>
+              </li>
+              <li class="d-none d-md-flex d-xxl-none">
+                <a class="dropdown-item" href="#"
+                    onclick="setSize(30, 16); return false;">
+                  30 x 16
+                </a>
+              </li>
+              <li class="d-none d-xxl-flex">
+                <a class="dropdown-item" href="#"
+                    onclick="setSize(30, 30); return false;">
+                  30 x 30
+                </a>
+              </li>
             </ul>
           </div>
-          
-          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" 
-                  data-bs-dismiss="modal">
-            Close
+                  data-bs-dismiss="modal"
+                  onclick="cancelChanges(); return false;">
+            Cancel
           </button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary"
+                  onclick="applyChanges(); return false;">
+            Save changes
+          </button>
         </div>
       </div>
     </div>

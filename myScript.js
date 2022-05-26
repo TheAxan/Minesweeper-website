@@ -1,8 +1,8 @@
-const gridHeight = localStorage.getItem('gridHeight') || 9;
-const gridWidth = localStorage.getItem('gridWidth') || 9;
-const fillRatio = localStorage.getItem('fillRatio') || 0.2; // if this is too high the guaranteed empty start can take a while
-const sweepAction = localStorage.getItem('sweepAction') || 'onclick';
-const flagAction = localStorage.getItem('flagAction') || 'oncontextmenu';
+let gridHeight = parseInt(localStorage.getItem('gridHeight')) || 9;
+let gridWidth = parseInt(localStorage.getItem('gridWidth')) || 9;
+let fillRatio = localStorage.getItem('fillRatio') || 0.2; // if this is too high the guaranteed empty start can take a while
+let sweepAction = localStorage.getItem('sweepAction') || 'onclick';
+let flagAction = localStorage.getItem('flagAction') || 'oncontextmenu';
 
 
 function generateMinefieldTable(targetId) {
@@ -273,7 +273,30 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 
 function generateDropdown() {
     document.getElementById('sizeDropdown')
-        .innerHTML = `Grid size (${gridWidth} x ${gridHeight})`
+        .innerHTML = `Grid size (${tempHeight} x ${tempWidth}) `;
+};
+
+
+let tempHeight = gridHeight;
+let tempWidth = gridWidth;
+function setSize(height, width) {
+    tempHeight = height;
+    tempWidth = width;
+    generateDropdown();
+};
+
+
+function applyChanges() {
+    localStorage.setItem('gridHeight', tempHeight);
+    localStorage.setItem('gridWidth', tempWidth);
+    location.reload(true)
+};
+
+
+function cancelChanges() {
+    tempHeight = gridHeight;
+    tempWidth = gridWidth;
+    generateDropdown();
 };
 
 
