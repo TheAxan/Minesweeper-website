@@ -3,6 +3,7 @@ let gridWidth = parseInt(localStorage.getItem('gridWidth')) || 9;
 let fillRatio = localStorage.getItem('fillRatio') || 0.2; // if this is too high the guaranteed empty start can take a while
 let sweepAction = localStorage.getItem('sweepAction') || 'onspacebar';
 let flagAction = localStorage.getItem('flagAction') || 'oncontextmenu';
+let numbersFont = localStorage.getItem('numbersFont') || 'Rationale';
 
 
 function generateMinefieldTable(targetId) {
@@ -335,9 +336,22 @@ function cancelChanges() {
 };
 
 
+function applyNumbersFont() {
+    document.getElementById('body')
+        .insertAdjacentHTML('beforebegin',
+            `<style>
+                .number-text{
+                    font-family: ${numbersFont};
+                    font-size: large;
+                }
+            </style>`
+        );
+};
+
 generateMinefieldTable('minefield');
 generateMinefieldArray();
 generateGear('gear', '#FFFFFF');
 generateMineHeader('mineHeader','#FFFFFF');
 generateMineCounter();
 generateDropdown();
+applyNumbersFont();
