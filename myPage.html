@@ -364,8 +364,185 @@
               data-bs-dismiss="modal" aria-label="Close">
           </button>
         </div>
-        <div class="modal-body">
-          Work in progress code page
+        <div class="modal-body text-start lh-1">
+          <pre><code class="code">
+            <br><span class="text-primary">// Welcome to behind the scenes!</span>
+            <br><span class="text-primary">// Here you can see how the core of the website (the game in it of itself) works.</span>
+            <br><span class="text-primary">// If you want to see the whole project you can go on https://github.com/TheAxan/Minesweeper-website</span>
+            <br>
+            <br>
+            <br><span class="text-primary">// First off, we need to generate the minefield data which is in the form of an array</span>
+            <br>var minefield = null;
+            <br>var mineCounter = Math.round(gridHeight * gridWidth * fillRatio);
+            <br>function generateMinefieldArray() {
+            <br>    <span class="text-primary">// we generate a two dimensional array with the set sizes</span>
+            <br>    minefield = new Array(gridHeight)
+            <br>        .fill(null)
+            <br>        .map(
+            <br>            () => Array(gridWidth).fill(0)
+            <br>        );
+            <br>    <span class="text-primary">// then we iteratively place new mines in it</span>
+            <br>    for (let placed = 0; placed < mineCounter;) {
+            <br>        let x = getRandomInt(0, gridWidth);
+            <br>        let y = getRandomInt(0, gridHeight);
+            <br>        <span class="text-primary">// of course, we don't add mines on other mines</span>
+            <br>        if (minefield[y][x] < 9) {
+            <br>            minefield[y][x] = 9;
+            <br>            <span class="text-primary">// here we use the neighborsArray function which we will declare soon</span>
+            <br>            for (let [i, j] of neighborsArray(x, y)) {
+            <br>                <span class="text-primary">// same for raiseMinecount</span>
+            <br>                raiseMinecount(i, j);
+            <br>            };
+            <br>            placed++;
+            <br>        };
+            <br>    };
+            <br>};
+            <br>
+            <br><span class="text-primary">// since we're only declaring functions, the order isn't important yet</span>
+            <br><span class="text-primary">// so, in generateMinefieldArray we can use neighborsArray</span>
+            <br>function neighborsArray(x, y) {
+            <br>    let output = new Array;
+            <br>    for (let [i, j] of [
+            <br>        <span class="text-primary">// we iterate over the cells around the center one</span>
+            <br>        [-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]
+            <br>    ]) {
+            <br>        <span class="text-primary">// and if they're in the grid</span>
+            <br>        if (-1 < y+j && y+j < gridHeight && -1 < x+i && x+i < gridWidth) {
+            <br>            <span class="text-primary">// we add their coordinates to the output</span>
+            <br>            output.push([x+i, y+j]);
+            <br>        };
+            <br>    };
+            <br>    return output;
+            <br>};
+            <br><span class="text-primary">// and raiseMinecount, which, well, raises the count of mines around the cell</span>
+            <br>function raiseMinecount(x, y) {
+            <br>    if (minefield[y][x] < 9) {
+            <br>        minefield[y][x]++;
+            <br>    };
+            <br>};
+            <br>
+            <br><span class="text-primary">// Then we need to keep track of which cells have been explored</span>
+            <br>var explored = new Set();
+            <br><span class="text-primary">// with this new set, we can setup a win condition!</span>
+            <br>function checkForWin() {
+            <br>    if (explored.size + mineCounter == gridHeight * gridWidth) {
+            <br>        document.getElementById('mineCounter').innerHTML = 'Well played!';
+            <br>        generatePlayAgainButton();
+            <br>    };
+            <br>};
+            <br>
+            <br><span class="text-primary">// Next up is interacting with the playboard with the sweep function</span>
+            <br><span class="text-primary">// since the first sweep must be a 0 the first sweep creates the minefield</span>
+            <br><span class="text-primary">// and then it rebinds itself to the real function</span>
+            <br>function sweep(x, y) {
+            <br>    regenerateMinefield(x, y);
+            <br>    sweep = gameStartedSweep;
+            <br>    sweep(x, y);
+            <br>};
+            <br><span class="text-primary">// regenerateMinefield recursively generates minefields until there is one with 0 as the first sweep</span>
+            <br>function regenerateMinefield(x, y) {
+            <br>    if (minefield[y][x] !== 0) {
+            <br>        generateMinefieldArray();
+            <br>        regenerateMinefield(x, y);
+            <br>    };
+            <br>};
+            <br><span class="text-primary">// here we have the real sweep fonction</span>
+            <br><span class="text-primary">// quite beefy isn't it?</span>
+            <br>function gameStartedSweep(x, y, recursive=false) {
+            <br>    <span class="text-primary">// there are two contexts in which the sweep fonction is called</span>
+            <br>    <span class="text-primary">// the first one is when you're sweeping an unexplored cell</span>
+            <br>    if (!explored.has(String([x, y]))) {
+            <br>        let cell = document.getElementById(`cell-${x}-${y}`);
+            <br>        let cellValue = minefield[y][x];
+            <br>        
+            <br>        <span class="text-primary">// when the cell has no mine around it</span>
+            <br>        if (cellValue === 0) {
+            <br>            cell.innerHTML = '';
+            <br>            explored.add(String([x, y]));
+            <br>            <span class="text-primary">// we automatically explore the cells around, this is recursion!</span>
+            <br>            for (let [i, j] of neighborsArray(x, y)) {
+            <br>                sweep(i, j, true);
+            <br>            };
+            <br>        
+            <br>        <span class="text-primary">// when we hit a mine </span>
+            <br>        } else if (cellValue === 9) {
+            <br>            <span class="text-primary">// we need to display it</span>
+            <br>            cell.innerHTML = mineSVG('#FFFFFF');
+            <br>            <span class="text-primary">// stop interactions</span>
+            <br>            sweep = flag = gameOverAction;
+            <br>            <span class="text-primary">// and prompt the play to retry</span>
+            <br>            generatePlayAgainButton();
+            <br>
+            <br>        <span class="text-primary">// if there's mines AROUND the cell</span>
+            <br>        } else {
+            <br>            <span class="text-primary">// we identify how many there are</span>
+            <br>            cell.innerHTML = cellValue;
+            <br>            <span class="text-primary">// setup the chaining interaction</span>
+            <br>            cell.setAttribute(
+            <br>                sweepAction, 
+            <br>                `sweep(${x}, ${y});
+            <br>                event.stopPropagation();
+            <br>                return false;`
+            <br>            )
+            <br>            <span class="text-primary">// and add it to the explored set</span>
+            <br>            explored.add(String([x, y]));
+            <br>        };
+            <br>        <span class="text-primary">// a sweep can be the last one, so we check for the win condition</span>
+            <br>        checkForWin();
+            <br>    <span class="text-primary">// the second one is when you're sweeping an explored cell</span>
+            <br>    <span class="text-primary">// however the sweep recursion can also sweep these cells</span>
+            <br>    <span class="text-primary">// which is why we prevent it with the recursive condition</span>
+            <br>    } else if (!recursive) {
+            <br>        <span class="text-primary">// Sometimes the explored cell has flag</span>
+            <br>        if (document.getElementById(`button-${x}-${y}`) != null) {
+            <br>            <span class="text-primary">// so we call the flag function to remove the flag</span>
+            <br>            flag(x, y);
+            <br>        <span class="text-primary">// Otherwise, it's for chain sweeping</span>
+            <br>        } else {
+            <br>            for (let [i, j] of neighborsArray(x, y)) {
+            <br>                sweep(i, j, true);
+            <br>            };
+            <br>        };
+            <br>    };
+            <br>};
+            <br>
+            <br><span class="text-primary">// if we rebind sweep and flag to gameOverAction they can't do anything</span>
+            <br>function gameOverAction() {
+            <br>    return;
+            <br>};
+            <br>
+            <br><span class="text-primary">// of course we also need to declare the flag fonction</span>
+            <br>function flag(x, y) {
+            <br>    let button = document.getElementById(`button-${x}-${y}`);
+            <br>    <span class="text-primary">// if the button doesn't have a flag</span>
+            <br>    if (button.innerHTML == '') {
+            <br>        <span class="text-primary">// we add one</span>
+            <br>        button.innerHTML = flagSVG('#FFFFFF');
+            <br>        <span class="text-primary">// update the counter</span>
+            <br>        mineCounter--;
+            <br>        generateMineCounter();
+            <br>        <span class="text-primary">// and add it to the explored set</span>
+            <br>        explored.add(String([x, y]));
+            <br>    <span class="text-primary">// if it does have flag</span>
+            <br>    } else {
+            <br>        <span class="text-primary">// we remove it</span>
+            <br>        button.innerHTML = '';
+            <br>        <span class="text-primary">//update the counter</span>
+            <br>        mineCounter++;
+            <br>        generateMineCounter();
+            <br>        <span class="text-primary">// and remove it from the explored set</span>
+            <br>        explored.delete(String([x, y]));
+            <br>    };
+            <br>    <span class="text-primary">// a flag can be the last one, so we check for the win condition</span>
+            <br>    checkForWin();
+            <br>};
+            <br>
+            <br>
+            <br><span class="text-primary">// and that's it for the programation logic of minesweeper!</span>
+            <br><span class="text-primary">// However, there's a lot more going on to make it into a website</span>
+            <br><span class="text-primary">// the nitty gritty implementation details aren't explained here,</span>
+            <br><span class="text-primary">// but once again, you can go peek at them on https://github.com/TheAxan/Minesweeper-website</span>
+          </code></pre>
         </div>
       </div>
     </div>

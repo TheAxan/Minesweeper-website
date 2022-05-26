@@ -42,6 +42,14 @@
     min-height: 38px;
 }
 
+.code {
+    font-family: 'Consolas';
+}
+
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+pre {
+    overflow-y: hidden;
 }

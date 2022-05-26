@@ -1,7 +1,7 @@
 let gridHeight = parseInt(localStorage.getItem('gridHeight')) || 9;
 let gridWidth = parseInt(localStorage.getItem('gridWidth')) || 9;
 let fillRatio = localStorage.getItem('fillRatio') || 0.2; // if this is too high the guaranteed empty start can take a while
-let sweepAction = localStorage.getItem('sweepAction') || 'onspacebar';
+let sweepAction = localStorage.getItem('sweepAction') || 'onclick';
 let flagAction = localStorage.getItem('flagAction') || 'oncontextmenu';
 let numbersFont = localStorage.getItem('numbersFont') || 'Rationale';
 
