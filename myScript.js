@@ -274,6 +274,8 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 function generateDropdown() {
     document.getElementById('sizeDropdown')
         .innerHTML = `Grid size (${tempHeight} x ${tempWidth}) `;
+    document.getElementById('fillRatioDropdown')
+        .innerHTML = `Fill ratio (${tempFillRatio * 100}%) `;
 };
 
 
@@ -285,10 +287,17 @@ function setSize(height, width) {
     generateDropdown();
 };
 
+let tempFillRatio = fillRatio;
+function setFillRatio(ratio) {
+    tempFillRatio = ratio;
+    generateDropdown();
+};
+
 
 function applyChanges() {
     localStorage.setItem('gridHeight', tempHeight);
     localStorage.setItem('gridWidth', tempWidth);
+    localStorage.setItem('fillRatio', tempFillRatio);
     location.reload(true)
 };
 
@@ -296,6 +305,7 @@ function applyChanges() {
 function cancelChanges() {
     tempHeight = gridHeight;
     tempWidth = gridWidth;
+    tempFillRatio = fillRatio;
     generateDropdown();
 };
 
