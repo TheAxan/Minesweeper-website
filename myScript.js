@@ -271,8 +271,15 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 });
 
 
+function generateDropdown() {
+    document.getElementById('sizeDropdown')
+        .innerHTML = `Grid size (${gridWidth} x ${gridHeight})`
+};
+
+
 generateMinefieldTable('minefield');
 generateMinefieldArray();
 generateGear('gear', '#FFFFFF');
 generateMineHeader('mineHeader','#FFFFFF');
 generateMineCounter();
+generateDropdown();
