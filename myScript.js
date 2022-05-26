@@ -1,8 +1,8 @@
-const gridHeight = 10;
-const gridWidth = 10;
-const fillRatio = 0.2; // if this is too high the guaranteed empty start can take a while
-const sweepAction = 'onclick';
-const flagAction = 'oncontextmenu';
+const gridHeight = localStorage.getItem('gridHeight') || 9;
+const gridWidth = localStorage.getItem('gridWidth') || 9;
+const fillRatio = localStorage.getItem('fillRatio') || 0.2; // if this is too high the guaranteed empty start can take a while
+const sweepAction = localStorage.getItem('sweepAction') || 'onclick';
+const flagAction = localStorage.getItem('flagAction') || 'oncontextmenu';
 
 
 function generateMinefieldTable(targetId) {
