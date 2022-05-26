@@ -362,6 +362,19 @@ function applyNumbersFont() {
         );
 };
 
+
+function generateHowToPlay() {
+    document.getElementById('howToPlay')
+        .insertAdjacentHTML('afterbegin',
+            `In minesweeper, your goal is to flag all the hidden mines and explore the rest of the field.
+            When you explore a tile or area with a ${sweepActionText(tempSweepAction)}, it reveals numbers indicating how many mines are in the adjacent tiles.
+            With those you can identify where are the mines and flag them with a ${sweepActionText(tempFlagAction)}.
+            If you ${sweepActionText(tempSweepAction)} a number surrounded by the corresponding number of flags, it explores all the other surrounding tiles.
+            You can read up on strategies`
+        );
+};
+
+
 generateMinefieldTable('minefield');
 generateMinefieldArray();
 generateGear('gear', '#FFFFFF');
@@ -369,3 +382,4 @@ generateMineHeader('mineHeader','#FFFFFF');
 generateMineCounter();
 generateDropdown();
 applyNumbersFont();
+generateHowToPlay();
