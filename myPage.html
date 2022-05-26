@@ -58,7 +58,14 @@
         </header>
 
         <main class="d-flex flex-column justify-content-center">
-          <table id="minefield" class="number-text mt-3 mx-auto d-flex"></table>
+          <div id="playAgainButtonSlot" 
+               class="d-flex flex-row justify-content-center m-3 play-again-slot">
+            &nbsp;
+          </div>
+
+          <table id="minefield" class="number-text mt-3 mx-auto d-flex"
+                 oncontextmenu="return false;">
+          </table>
 
           <p id='mineCounter' class="m-3 d-inline-block" 
               data-bs-toggle="tooltip" data-bs-placement="top"

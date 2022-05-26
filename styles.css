@@ -42,6 +42,10 @@
     margin-right: auto;
 }
 
+.play-again-slot {
+    min-height: 38px;
+}
+
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

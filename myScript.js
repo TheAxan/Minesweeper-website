@@ -97,13 +97,12 @@ function checkForWin() {
 
 
 function generatePlayAgainButton(){
-    document.getElementById('minefield').insertAdjacentHTML('beforebegin',
-        `<br>
-        <button class="btn btn-primary m-2" href="#" 
+    document.getElementById('playAgainButtonSlot').innerHTML =`<br>
+        <button class="btn btn-primary" href="#" 
                 onclick="location.reload(true); return false;">
           Play again
         </button>`
-    );
+    ;
 };
 
 
